@@ -37,7 +37,7 @@
     const fifteen = inventors.filter(function (inventor) {
       return inventor.year >= 1500 && inventor.year <= 1600
     });
-    console.table(fifteen)
+    console.log(fifteen)
 
     // Array.prototype.map()
     // 2. Give us an array of the inventors first and last names
@@ -45,38 +45,66 @@
     const firstLast = inventors.map(inventor => {
       return inventor.first.concat(` ${inventor.last}`)
     });
-    console.table(firstLast)
+    console.log(firstLast)
 
     // Array.prototype.sort()
     // 3. Sort the inventors by birthdate, oldest to youngest
-    const birthOrder = inventors.sort((a, b) => {
-      if (a.year > b.year) {
-        return 1;
-      } else {
-        return -1;
-      }
-    });
+    const birthOrder = inventors.sort((a, b) => a.year > b.year ? 1 : -1);
 
-    console.table(birthOrder)
+    console.log(birthOrder)
 
     // Array.prototype.reduce()
     // 4. How many years did all the inventors live all together?
 
-    
+    const totalYears = inventors.reduce((total, inventor) => {
+      return total + inventor.passed - inventor.year
+    }, 0);
 
+    console.log(totalYears);
     // 5. Sort the inventors by years lived
+
+    const longLife = inventors.sort((a, b) => {
+      if ((a.passed - a.year) > (b.passed - b.year)) {
+        return -1;
+      } else {
+        return 1;
+      }
+    });
+
+    console.log(longLife);
 
     // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
     // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
+
+    let boulevards = Array.from(document.querySelectorAll("div.mw-category a"))
+      .map(link => link.textContent)
+      .filter(bouldevard => boulevard.textContent.includes("de"))
 
 
     // 7. sort Exercise
     // Sort the people alphabetically by last name
 
+    let alphaPeeps = people.sort( (firstGuy, nextGuy) => {
+      let fgLastName = firstGuy.split(", ")[0];
+      let ngLastName = nextGuy.split(', ')[0];
+      fgLastName > ngLastName ? -1 : 1;
+    });    
+
+    console.log(alphaPeeps);
+
     // 8. Reduce Exercise
     // Sum up the instances of each of these
     const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck'];
 
+    let vehicleCount = data.reduce((obj, vehicle) => {
+      if (!obj[vehicle]){
+       obj[vehicle] = 0;
+      };
+      obj[vehicle]++;
+      return obj
+    }, {});
+
+    console.table(vehicleCount);
   </script>
 </body>
 
