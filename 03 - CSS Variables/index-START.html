@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Scoped CSS Variables and JS</title>
+  <script type="text/javascript" src="index.js"></script>
 </head>
 <body>
   <h2>Update CSS Variables with <span class='hl'>JS</span></h2>
@@ -21,10 +22,21 @@
   <img src="https://source.unsplash.com/7bwQXzbF6KE/800x500">
 
   <style>
+    :root {
+      --base: #ffc600;
+      --space: 10px;
+      --blur: 10px;
+    };
 
-    /*
-      misc styles, nothing to do with CSS variables
-    */
+    img {
+      padding: var(--spacing);
+      background: var(--base);
+      filter: blur(var(--blur));
+    };
+
+    .hl {
+      color: var(--base);
+    };
 
     body {
       text-align: center;
@@ -43,9 +55,6 @@
       width: 100px;
     }
   </style>
-
-  <script>
-  </script>
 
 </body>
 </html>
