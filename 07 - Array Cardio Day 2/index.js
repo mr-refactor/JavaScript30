@@ -46,3 +46,10 @@ console.log(goodComment);
 const indexOfGoodComment = comments.findIndex((c) => c.id === 823423);
 console.log(indexOfGoodComment);
 
+const newComments = [
+    ...comments.slice(0, indexOfGoodComment),
+    ...comments.slice(indexOfGoodComment + 1)
+]
+
+console.table(newComments);
+
