@@ -8,14 +8,21 @@ document.addEventListener("DOMContentLoaded", () => {
     let lineGrowing = true;
 
     setCanvasArea();
-    setCanvasEventListeners();
     setInitialContext();
+    setCanvasEventListeners();
 
     function setCanvasArea() {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight; 
     }
-
+    
+    function setInitialContext(){
+        ctx.strokeStyle = '#BADASS';
+        ctx.lineJoin = 'round';
+        ctx.lineCap = 'round';
+        ctx.lineWidth = 0;
+    }
+    
     function setCanvasEventListeners(){
         canvas.addEventListener('mousedown', startDrawing)
         canvas.addEventListener('mouseup', stopDrawing)
@@ -23,12 +30,6 @@ document.addEventListener("DOMContentLoaded", () => {
         canvas.addEventListener('mousemove', handleDraw);
     }
 
-    function setInitialContext(){
-        ctx.strokeStyle = '#BADASS';
-        ctx.lineJoin = 'round';
-        ctx.lineCap = 'round';
-        ctx.lineWidth = 0;
-    }
     
     function startDrawing(e) {
         isDrawing = true;
