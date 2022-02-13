@@ -60,32 +60,16 @@
         "An Old Dog",
       ];
 
-      
-      const sortedBands = bands.sort((bandA, bandB) => {
-        const bandAWithoutArticle = getBandWithoutArticle(bandA);
-        const bandBWithoutArticle = getBandWithoutArticle(bandB);
-        return bandAWithoutArticle > bandBWithoutArticle ? 1 : -1;
-      })
-      
-      const bandsList = document.querySelector("#bands").innerHTML = sortedBands.map(band => `<li>${band}</li>`).join('');
+      const sortedBands = bands.sort((bandA, bandB) =>
+        strip(bandA) > strip(bandB) ? 1 : -1
+      );
 
-      function getBandWithoutArticle(band) {
-        const startIndex = findIndexOfFirstNonArticle(band);
-        return band.slice(startIndex);
-      }
+      const bandsList = (document.querySelector("#bands").innerHTML =
+        sortedBands.map((band) => `<li>${band}</li>`)
+        .join(""));
 
-      function findIndexOfFirstNonArticle(band) {
-        let indexOfFirstNonArticle = 0;
-        for (let i = 0; i < band.length; i += 1) {
-          if (band[i] == " ") {
-            const firstWord = band.slice(0, i);
-            if (firstWord == "An" || firstWord == "The" || firstWord == "A") {
-              indexOfFirstNonArticle = i + 1;
-            }
-            break;
-          }
-        }
-        return indexOfFirstNonArticle;
+      function strip(bandName) {
+        return bandName.replace(/^(a |the |an )/i, "").trim();
       }
     </script>
   </body>
